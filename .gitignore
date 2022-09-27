@@ -1,0 +1,6 @@
+# common modules
+/**/node_modules/
+/**/.next
+/**/out
+# testing https
+/**/*.http
