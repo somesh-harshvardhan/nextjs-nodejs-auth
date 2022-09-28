@@ -1,7 +1,3 @@
-export default function Home() {
-  return (
-    <div >
+import Home from "../src/Home";
 
-    </div>
-  )
-}
+export default Home

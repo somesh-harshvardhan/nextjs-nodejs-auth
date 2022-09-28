@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import propTypes from "prop-types";
+
 
 const Flex = styled.div`
   display: flex;
@@ -51,8 +51,8 @@ const FlexBox = ({
 };
 
 FlexBox.defaultProps = {
-  height: 100,
-  width: 100,
+  height: 'auto',
+  width: 'auto',
   direction: "row",
   alignItems: "flex-start",
   textAlign: "center",
