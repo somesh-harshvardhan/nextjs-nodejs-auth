@@ -2,6 +2,8 @@ import React from "react";
 import styled from "styled-components";
 const Block = styled.div`
   display: ${(props) => props.display};
+  align-items: ${props=>props.align};
+  justify-content: ${props=>props.justify};
   border-radius: ${(props) => props.brRadius};
   box-shadow: ${(props) => props.shadow};
   margin: ${(props) => props.margin};
@@ -21,16 +23,21 @@ const Container = ({
   lineHeight,
   styleObj,
   display,
+  align,
+  justify,
   ...rest
 }) => {
   const styleProps = {
     display,
+    align,
+    justify,
     brRadius,
     shadow,
     margin,
     padding,
     color,
     lineHeight,
+    styleObj
   };
   return (
     <Block as={tag} {...rest} {...styleProps}>
@@ -40,6 +47,8 @@ const Container = ({
 };
 Container.defaultProps = {
   display: "block",
+  align : "center",
+  justify : "flex-start",
   brRadius: 0,
   shadow: "none",
   margin: 0,

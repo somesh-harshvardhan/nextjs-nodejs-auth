@@ -8,7 +8,7 @@ import Search from './Search'
 const Layout = ({children,layoutNav,footer,preNav=undefined,afterNav=undefined,enableSearch="false"}) => {
 const styleObjNav={
     "background" : "var(--layout-nav-background)",
-    "padding"  : "16px 80px",
+    "padding"  : "0 80px",
     "color"  :  "#fff"
 }
   return (

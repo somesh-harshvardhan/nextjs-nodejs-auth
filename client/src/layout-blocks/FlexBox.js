@@ -1,5 +1,5 @@
 import React from "react";
-import styled from "styled-components";
+import styled,{css}from "styled-components";
 
 
 const Flex = styled.div`
@@ -14,7 +14,12 @@ const Flex = styled.div`
   border-radius: ${(props) => props.brRadius};
   box-shadow: ${(props) => props.shadow};
   min-height: ${(props) => props.minHeight};
-  ${(props) => props.styleObj}
+  ${props=>props.hover && css`
+    :hover{
+      background-color: rgba(0,0,0,.04);
+    }
+   `}
+  ${(props) => props.styleObj};
 `;
 
 const FlexBox = ({
@@ -30,6 +35,7 @@ const FlexBox = ({
   minHeight,
   justify,
   styleObj,
+  hover,
   ...rest
 }) => {
   const styleProps = {
@@ -41,7 +47,8 @@ const FlexBox = ({
     brRadius,
     shadow,
     minHeight,
-    justify
+    justify,
+    hover
   };
   return (
     <Flex styleObj={styleObj} as={tag} {...rest} {...styleProps}>
@@ -61,5 +68,6 @@ FlexBox.defaultProps = {
   minHeight: "auto",
   justify : 'center',
   styleObj: {},
+  hover  :false
 };
 export default FlexBox;

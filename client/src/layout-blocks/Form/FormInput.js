@@ -10,9 +10,8 @@ const FormInput = ({children,name,type="input",placeHolder="",as,...rest}) => {
       )
   }else{
     return (
-        <Field name={name} type={type} placeholder={placeHolder} {...rest}>
-             {children}
-        </Field>
+        <Field name={name} type={type} placeholder={placeHolder} {...rest}/>
+      
       )
   }
 
