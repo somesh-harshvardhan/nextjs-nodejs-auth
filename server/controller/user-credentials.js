@@ -4,8 +4,7 @@ const { statusText } = require('../constants');
 exports.signin= function (req, res) {
     const { user_name, email, password } = req.body;
     const db = req.app.get('db');
-    const user = db.findOne("user_name", user_name);
-
+    const user = db.findOne("email", email);
     if (!user) {
         res.status(200).json({ "message": "No login credentials found", status: statusText[0] })
     }
@@ -26,13 +25,13 @@ exports.signin= function (req, res) {
 exports.register = function(req,res){
     const { user_name, email, password } = req.body;
     const db = req.app.get('db');
-    const user = db.findOne("user_name", user_name);
+    const user = db.findOne("email", email);
     if(user){
         return res.status(409).json({"message" : "User already exists",status : statusText[4]})
     }
     if(!user){
         db.createUser(user_name,email,password);
-        const u = db.findOne("user_name", user_name);
+        const u = db.findOne("email", email);
         const token = jwt.sign(
             { user_name : u.user_name, email : u.email },
             process.env.TOKEN_KEY,

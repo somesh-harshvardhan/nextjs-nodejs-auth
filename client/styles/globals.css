@@ -1,9 +1,22 @@
-*{
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap");
+* {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  font-family: "Roboto", sans-serif;
 }
-:root{
-  --layout-nav-background : #2455f4;
-  --primary-blue : #2455f4;
+:root {
+  --layout-nav-background: #2455f4;
+  --primary-blue: #2455f4;
+  --primary-gray: #e4e7ed;
+  --primary-orange: #fb641b;
+}
+.mr4 {
+  margin-right: 4px;
+}
+.ml4 {
+  margin-left: 4px;
+}
+.mt32 {
+  margin-top: 32px;
 }

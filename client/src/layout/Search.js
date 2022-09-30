@@ -22,6 +22,7 @@ position: relative;
 const Search = () => {
     const style={
         padding : "8px 10px",
+        paddingRight : "30px",
         width  : '500px',
         outline : 'none',
         borderRadius : '4px',

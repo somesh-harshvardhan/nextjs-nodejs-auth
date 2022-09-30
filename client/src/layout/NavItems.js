@@ -4,9 +4,56 @@ import { AiOutlineShoppingCart } from "react-icons/ai";
 import Container from "../layout-blocks/Container";
 import DropDown from "../layout-blocks/DropDown/DropDown";
 import FlexBox from "../layout-blocks/FlexBox";
-
+const loginButtonStyleObj = {
+  background: "#FFF",
+  padding : "2px 20px",
+  cursor : "pointer",
+  color : "var(--primary-blue)",
+  fontWeight : "500",
+  cursor : "pointer"
+};
+const styleObjContainer = {
+  columnGap: "24px",
+  alignSelf : "stretch",
+};
+const styleObjNav = {
+  color: "#FFF",
+  cursor: "pointer",
+};
+const dropDownHeaderStyleObj = {
+  display: "flex",
+  alignItems: "center",
+  justifyContent: "center",
+};
+const blockStyleObj = {
+  alignItems: "stretch",
+  display: "flex",
+};
 const NavItems = () => {
+   
+  const dropDownProps = {
+    color : "#fff",
+    backGround :"transparent",
+    bodyBackground :"#fff",
+    headerStyleObj :dropDownHeaderStyleObj,
+    dropDownBodyItemPaddingY :"8px",
+    blockStyleObj : blockStyleObj,
+    hover : true
+  }
+  const loginProps = {
+    
+  }
   const navMenus = [
+    {
+      title: "Login",
+      icon: null,
+      props : loginProps,
+      customComponent: (props) => (
+        <FlexBox alignItems="center" justify="center">
+          <FlexBox styleObj={loginButtonStyleObj}>{props.header}</FlexBox>
+        </FlexBox>
+      ),
+    },
     {
       title: "Become a seller",
       icon: null,
@@ -16,6 +63,7 @@ const NavItems = () => {
     {
       title: "More",
       icon: IoIosArrowDown,
+      props : dropDownProps,
       customComponent: DropDown,
       styleoverride: {},
       bodyContent: [
@@ -33,43 +81,22 @@ const NavItems = () => {
       styleoverride: {},
     },
   ];
-  const styleObjContainer = {
-    "column-gap": "24px",
-    "align-self" : "stretch"
-  };
-  const styleObjNav = {
-    color: "#FFF",
-    cursor: "pointer",
-  };
-  const dropDownHeaderStyleObj = {
-    display: "flex",
-    "align-items": "center",
-    "justify-content": "center",
-   
-  };
-  const blockStyleObj = { 
-    "align-items" : "stretch",
-    "display" : "flex"
-  }
+
   return (
     <Container display="flex" align="stretch" styleObj={styleObjContainer}>
       {navMenus.map((navitem) => {
-        if (navitem.customComponent)
+        if (navitem.customComponent) {
           return (
             <navitem.customComponent
-              key={navitem}
+              key={navitem.title}
               header={navitem.title}
               bodyContent={navitem.bodyContent}
-              color="#fff"
-              backGround="transparent"
-              bodyBackground="#fff"
               Icon={navitem.icon}
-              headerStyleObj={dropDownHeaderStyleObj}
-              dropDownBodyItemPaddingY="8px"
-              blockStyleObj={blockStyleObj}
-              hover
+              {...navitem.props}
             />
           );
+        }
+
         return (
           <FlexBox
             key={navitem.title}
@@ -78,7 +105,7 @@ const NavItems = () => {
             styleObj={styleObjNav}
           >
             {" "}
-            {navitem.icon && <navitem.icon />} {navitem.title}
+            {navitem.icon && <navitem.icon style={{marginRight : 4}}/>} {navitem.title}
           </FlexBox>
         );
       })}

@@ -84,16 +84,16 @@ const DropDown = ({
   const dropDownItemStyleObj = {
     padding: `${dropDownBodyItemPaddingY} ${dropDownBodyItemPaddingX}`,
     margin: `${dropDownBodyItemMarginY} ${dropDownBodyItemMarginX}`,
-    "border-bottom" : "1px solid #f0f0f0",
-    "cursor" : "pointer",
+    borderBottom : "1px solid #f0f0f0",
+    cursor : "pointer",
   };
   const iconStyleOBj ={
   marginRight : '4px',
   transform : isHovered ? `rotate(180deg)` : 'rotate(0)',
   transition : 'all .1s ease',
   display : 'flex',
-  "align-items" : "center",
-  "justify-content" : "center"
+  alignItems : "center",
+  justifyContent : "center"
 }
   
   return (

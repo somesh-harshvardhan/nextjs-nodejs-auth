@@ -9,6 +9,8 @@ const T = styled.div`
   padding: ${(props) => props.padding};
   color: ${(props) => props.color};
   line-height: ${(props) => props.lineHeight};
+  font-size: ${props=>props.size};
+  font-weight: ${props=>props.weight};
   ${(props) => props.styleObj}
 `;
 
@@ -22,6 +24,8 @@ const Text = ({
   padding,
   color,
   lineHeight,
+  size,
+  weight,
   styleObj,
   ...rest
 }) => {
@@ -33,6 +37,8 @@ const styleProps = {
     padding,
     color,
     lineHeight,
+    size,
+    weight
 }
   return (
     <T styleObj={styleObj} as={tag} {...rest} {...styleProps}>
@@ -48,6 +54,8 @@ Text.defaultProps = {
   padding: 0,
   color: "#000",
   lineHeight: "24px",
+  size : "16px",
+  weight : "400",
   styleObj: {},
 };
 export default Text;
