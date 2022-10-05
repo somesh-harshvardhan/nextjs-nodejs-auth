@@ -1,14 +1,15 @@
-import React, { useEffect } from "react";
+import React from "react";
 import FlexBox from "../src/layout-blocks/FlexBox";
-import { setCookie } from "cookies-next";
+import { getCookie, setCookie } from "cookies-next";
 import Layout from "../src/layout/Layout";
 import LoginSvg from "../src/svg/LoginSvg";
 import Text from "../src/layout-blocks/Text";
 import { Form, Formik } from "formik";
 import FormInput from "../src/layout-blocks/Form/FormInput";
 import styles from "./../src/css/sign-in.module.css";
-import axios from 'axios';
-import { BASE_URL, signInUrl } from "../src/constants";
+import {  signInUrl } from "../src/constants";
+import {useRouter} from 'next/router';
+import api from "../src/api";
 
 const loginAboutStyleObj = {
   flexBasis: "40%",
@@ -25,12 +26,16 @@ const loginFieldStyleObj = {
   paddingTop: "64px",
 };
 const SignIn = () => {
+   
+  const router =  useRouter();
+
   const handleSubmit = async (values) => {
-    const res = await axios.post(signInUrl(),{
+    const res = await api.post(signInUrl(),{
       email : values.email,
       password : values.password
     })
-    console.log(res.data)
+    setCookie("user_login_auth_sl",res.data);
+    router.push(`/profile/${res.data.id}`);
   };
   return (
     <Layout>
@@ -97,3 +102,20 @@ const SignIn = () => {
 };
 
 export default SignIn;
+
+export const getServerSideProps = async (ctx)=>{
+  
+  const {req,res} = ctx;
+  const authCookie = getCookie("user_login_auth_sl",{req,res});
+  if(authCookie) return {
+    redirect : {
+      destination :"/profile",
+      permanent : false
+    }
+  }
+  return {
+    props : {
+
+    }
+  }
+}

@@ -12,7 +12,7 @@ exports.signin= function (req, res) {
         if (password === user.password) {
             const token = jwt.sign({
                 user_name: user.user_name, email: user.email
-            }, process.env.TOKEN_KEY, { expiresIn: '2h' })
+            }, process.env.TOKEN_KEY, { expiresIn: '30d' })
             user.token = token;
             res.status(200).json(user);
         } else {
@@ -36,7 +36,7 @@ exports.register = function(req,res){
             { user_name : u.user_name, email : u.email },
             process.env.TOKEN_KEY,
             {
-              expiresIn: "2h",
+              expiresIn: "30d",
             }
           );
           u.token = token;
