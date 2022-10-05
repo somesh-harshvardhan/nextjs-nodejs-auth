@@ -1,6 +1,6 @@
 import {getCookie} from 'cookies-next'
-import { validateProfile } from '../constants';
-import api from './../api.js'
+import { validateProfile } from '../../constants';
+import api from '../../api.js'
 const WithAuth =async (ctx) => {
     const {req,res,params} = ctx;
     const authCookie = getCookie("user_login_auth_sl",{req,res});
