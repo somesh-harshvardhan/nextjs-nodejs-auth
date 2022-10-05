@@ -34,8 +34,9 @@ const SignIn = () => {
       email : values.email,
       password : values.password
     })
-    setCookie("user_login_auth_sl",res.data);
-    router.push(`/profile/${res.data.id}`);
+    console.log(res)
+    // setCookie("user_login_auth_sl",res.data);
+    // router.push(`/profile/${res.data.id}`);
   };
   return (
     <Layout>
@@ -107,9 +108,10 @@ export const getServerSideProps = async (ctx)=>{
   
   const {req,res} = ctx;
   const authCookie = getCookie("user_login_auth_sl",{req,res});
+  const id = authCookie ? JSON.parse(authCookie).id : null;
   if(authCookie) return {
     redirect : {
-      destination :"/profile",
+      destination :"/profile/"+id,
       permanent : false
     }
   }

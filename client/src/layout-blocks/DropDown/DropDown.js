@@ -108,9 +108,9 @@ const DropDown = ({
       {isHovered && (
         <DropDownBody {...bodyContentStyleProps}
          >
-          {bodyContent.map((body) => (
+          {bodyContent.map((body,indx) => (
             <FlexBox
-              key={body}
+              key={body + indx}
               height={dropDownBodyItemHeight}
               styleObj={dropDownItemStyleObj}
               hover={hover}

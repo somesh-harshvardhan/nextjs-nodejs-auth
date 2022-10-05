@@ -2,8 +2,10 @@ import React from 'react'
 import Container from '../layout-blocks/Container'
 import FlexBox from '../layout-blocks/FlexBox'
 import Footer from './Footer'
-import NavItems from './NavItems'
 import Search from './Search'
+import dynamic from 'next/dynamic';
+
+const ClientOnlyNav= dynamic(()=>import('./NavItems'),{ssr : false})
 
 const Layout = ({children,layoutNav,footer,preNav=undefined,afterNav=undefined,enableSearch="false"}) => {
 const styleObjNav={
@@ -19,7 +21,7 @@ const styleObjNav={
         Logo Goes Here
      </FlexBox>
      <Search enableSearch={enableSearch}/>
-     <NavItems/>
+     <ClientOnlyNav/>
      </FlexBox>
     {afterNav && afterNav}
     {children}
